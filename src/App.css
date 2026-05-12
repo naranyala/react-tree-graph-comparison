@@ -253,3 +253,37 @@ body {
   from { transform: translateY(100%); }
   to { transform: translateY(0); }
 }
+
+.btn-demo-card.active {
+  border-color: var(--primary-color);
+  background-color: #eef2ff;
+}
+
+.demo-options-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 0 20px 0;
+}
+
+.demo-option-btn {
+  padding: 6px 12px;
+  background: #fff;
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.demo-option-btn.active {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+.demo-placeholder {
+  text-align: center;
+  color: var(--text-muted);
+  font-style: italic;
+}

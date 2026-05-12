@@ -1,23 +1,21 @@
 import { Category } from './types';
 
-export const TOPICS = [
-  { id: 'zoomPan', label: 'Zoom & Pan' },
-  { id: 'customNodes', label: 'Custom Nodes' },
-  { id: 'edgeRouting', label: 'Edge Routing' },
-  { id: 'largeData', label: 'Scale/Perf' },
-  { id: 'a11y', label: 'Accessibility' },
-  { id: 'interactivity', label: 'Interactivity' },
-  { id: 'stateSync', label: 'React State Sync' },
-  { id: 'layoutEngine', label: 'Layout Engines' },
-  { id: 'virtualization', label: 'Virtualization' },
-  { id: 'tsSupport', label: 'TS Support' },
-  { id: 'domAccess', label: 'React-in-Node' },
-  { id: 'bundleSize', label: 'Bundle Size' },
-  { id: 'algorithms', label: 'Graph Algorithms' },
-  { id: 'dynamicUpdates', label: 'Dynamic Updates' },
-  { id: 'stylingMode', label: 'Styling Paradigm' },
-  { id: 'exportSupport', label: 'Export Options' },
-];
+export const TOPICS = Object.entries({
+  zoomPan: 'Zoom & Pan',
+  customNodes: 'Custom Nodes',
+  edgeRouting: 'Edge Routing',
+  largeData: 'Scale/Perf',
+  a11y: 'Accessibility',
+  interactivity: 'Interactivity',
+  animation: 'Transitions',
+  export: 'Export (SVG/PNG)',
+  stateSync: 'React State Sync',
+  layoutEngine: 'Layout Engines',
+  virtualization: 'Virtualization',
+  tsSupport: 'TS Support',
+  domAccess: 'React-in-Node',
+  undoRedo: 'Undo/Redo',
+}).map(([id, label]) => ({ id, label }));
 
 export const categories: Category[] = [
   {
@@ -33,10 +31,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Moderate',
         maxNodes: '10k+',
+        supportedDemos: ['basic', 'interactive', 'custom'],
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'full', largeData: 'partial', a11y: 'none', interactivity: 'full',
-          stateSync: 'partial', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'none', bundleSize: 'medium',
-          algorithms: 'full', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'full'
+          animation: 'partial', export: 'full', stateSync: 'partial', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'none', undoRedo: 'none'
         },
       },
       {
@@ -48,10 +46,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Steep',
         maxNodes: '50k+',
+        supportedDemos: ['basic', 'interactive', 'custom', 'scale'],
         features: { 
           zoomPan: 'full', customNodes: 'full', edgeRouting: 'full', largeData: 'full', a11y: 'none', interactivity: 'full',
-          stateSync: 'partial', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'partial', bundleSize: 'large',
-          algorithms: 'full', dynamicUpdates: 'full', stylingMode: 'full', exportSupport: 'full'
+          animation: 'full', export: 'full', stateSync: 'partial', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'partial', undoRedo: 'partial'
         },
       },
       {
@@ -63,10 +61,10 @@ export const categories: Category[] = [
         license: 'Apache 2.0',
         learningCurve: 'Easy',
         maxNodes: '5k+',
+        supportedDemos: ['basic', 'interactive'],
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'partial', largeData: 'partial', a11y: 'none', interactivity: 'full',
-          stateSync: 'partial', layoutEngine: 'partial', virtualization: 'none', tsSupport: 'partial', domAccess: 'none', bundleSize: 'medium',
-          algorithms: 'partial', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'partial'
+          animation: 'partial', export: 'partial', stateSync: 'partial', layoutEngine: 'partial', virtualization: 'none', tsSupport: 'partial', domAccess: 'none', undoRedo: 'none'
         },
       },
       {
@@ -78,10 +76,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Moderate',
         maxNodes: '100k+',
+        supportedDemos: ['basic', 'interactive', 'scale'],
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'none', largeData: 'full', a11y: 'none', interactivity: 'full',
-          stateSync: 'full', layoutEngine: 'partial', virtualization: 'full', tsSupport: 'full', domAccess: 'partial', bundleSize: 'medium',
-          algorithms: 'none', dynamicUpdates: 'full', stylingMode: 'partial', exportSupport: 'partial'
+          animation: 'full', export: 'partial', stateSync: 'full', layoutEngine: 'partial', virtualization: 'full', tsSupport: 'full', domAccess: 'partial', undoRedo: 'none'
         },
       },
       {
@@ -93,10 +91,10 @@ export const categories: Category[] = [
         license: 'Apache 2.0',
         learningCurve: 'Moderate',
         maxNodes: '100k+',
+        supportedDemos: ['basic', 'scale'],
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'partial', largeData: 'full', a11y: 'partial', interactivity: 'partial',
-          stateSync: 'partial', layoutEngine: 'partial', virtualization: 'partial', tsSupport: 'full', domAccess: 'none', bundleSize: 'large',
-          algorithms: 'partial', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'full'
+          stateSync: 'partial', layoutEngine: 'partial', virtualization: 'partial', tsSupport: 'full', domAccess: 'none', bundleSize: 'large' as any, undoRedo: 'none'
         },
       },
       {
@@ -108,10 +106,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Steep',
         maxNodes: '1M+',
+        supportedDemos: ['basic', 'scale', 'interactive'],
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'none', largeData: 'full', a11y: 'none', interactivity: 'partial',
-          stateSync: 'partial', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'none', bundleSize: 'medium',
-          algorithms: 'none', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'partial'
+          animation: 'partial', export: 'partial', stateSync: 'partial', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'none', undoRedo: 'none'
         },
       },
     ],
@@ -129,10 +127,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Easy',
         maxNodes: '10k+',
+        supportedDemos: ['basic', 'scale', 'a11y'],
         features: { 
           zoomPan: 'none', customNodes: 'full', edgeRouting: 'none', largeData: 'full', a11y: 'partial', interactivity: 'full',
-          stateSync: 'full', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'full', bundleSize: 'small',
-          algorithms: 'none', dynamicUpdates: 'full', stylingMode: 'full', exportSupport: 'partial'
+          animation: 'partial', export: 'none', stateSync: 'full', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'full', undoRedo: 'partial'
         },
       },
       {
@@ -144,9 +142,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Moderate',
         maxNodes: '10k+',
+        supportedDemos: ['basic', 'a11y', 'custom'],
         features: { 
           zoomPan: 'none', customNodes: 'full', edgeRouting: 'none', largeData: 'full', a11y: 'full', interactivity: 'full',
-          stateSync: 'full', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'full', bundleSize: 'small'
+          animation: 'none', export: 'none', stateSync: 'full', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'full', undoRedo: 'partial'
         },
       },
       {
@@ -158,9 +157,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Moderate',
         maxNodes: '2k+',
+        supportedDemos: ['basic', 'custom'],
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'partial', largeData: 'partial', a11y: 'none', interactivity: 'partial',
-          stateSync: 'full', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'partial', bundleSize: 'small'
+          animation: 'full', export: 'full', stateSync: 'full', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'partial', undoRedo: 'none'
         },
       },
     ],
@@ -178,9 +178,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Moderate',
         maxNodes: '10k+',
+        supportedDemos: ['basic', 'interactive', 'custom', 'scale'],
         features: { 
           zoomPan: 'full', customNodes: 'full', edgeRouting: 'partial', largeData: 'partial', a11y: 'partial', interactivity: 'full',
-          stateSync: 'full', layoutEngine: 'partial', virtualization: 'partial', tsSupport: 'full', domAccess: 'full', bundleSize: 'medium'
+          animation: 'full', export: 'full', stateSync: 'full', layoutEngine: 'partial', virtualization: 'partial', tsSupport: 'full', domAccess: 'full', undoRedo: 'partial'
         },
       },
       {
@@ -192,9 +193,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Steep',
         maxNodes: '20k+',
+        supportedDemos: ['basic', 'interactive', 'custom', 'scale'],
         features: { 
           zoomPan: 'full', customNodes: 'full', edgeRouting: 'full', largeData: 'full', a11y: 'partial', interactivity: 'full',
-          stateSync: 'partial', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'full', bundleSize: 'large'
+          animation: 'full', export: 'full', stateSync: 'partial', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'full', undoRedo: 'full'
         },
       },
       {
@@ -203,12 +205,43 @@ export const categories: Category[] = [
         engine: 'SVG',
         reactFriendly: 'Low',
         complexity: 'High',
-        license: 'Mozilla Public License',
+        license: 'MPL',
         learningCurve: 'Steep',
         maxNodes: '10k+',
+        supportedDemos: ['basic', 'interactive', 'custom'],
         features: { 
           zoomPan: 'full', customNodes: 'full', edgeRouting: 'full', largeData: 'partial', a11y: 'none', interactivity: 'full',
-          stateSync: 'none', layoutEngine: 'full', virtualization: 'none', tsSupport: 'partial', domAccess: 'partial', bundleSize: 'large'
+          animation: 'partial', export: 'full', stateSync: 'none', layoutEngine: 'full', virtualization: 'none', tsSupport: 'partial', domAccess: 'partial', undoRedo: 'full'
+        },
+      },
+      {
+        library: 'GoJS',
+        useCase: 'Enterprise Diagrams',
+        engine: 'Canvas',
+        reactFriendly: 'Low',
+        complexity: 'High',
+        license: 'Commercial',
+        learningCurve: 'Steep',
+        maxNodes: '100k+',
+        supportedDemos: ['basic', 'interactive', 'custom', 'scale'],
+        features: { 
+          zoomPan: 'full', customNodes: 'full', edgeRouting: 'full', largeData: 'full', a11y: 'partial', interactivity: 'full',
+          animation: 'full', export: 'full', stateSync: 'none', layoutEngine: 'full', virtualization: 'full', tsSupport: 'full', domAccess: 'none', undoRedo: 'full'
+        },
+      },
+      {
+        library: 'yFiles',
+        useCase: 'Ultra-scale Graphs',
+        engine: 'Canvas/SVG',
+        reactFriendly: 'Low',
+        complexity: 'High',
+        license: 'Commercial',
+        learningCurve: 'Steep',
+        maxNodes: '1M+',
+        supportedDemos: ['basic', 'interactive', 'custom', 'scale', 'a11y'],
+        features: { 
+          zoomPan: 'full', customNodes: 'full', edgeRouting: 'full', largeData: 'full', a11y: 'full', interactivity: 'full',
+          animation: 'full', export: 'full', stateSync: 'none', layoutEngine: 'full', virtualization: 'full', tsSupport: 'full', domAccess: 'partial', undoRedo: 'full'
         },
       },
     ],
@@ -226,9 +259,10 @@ export const categories: Category[] = [
         license: 'MIT',
         learningCurve: 'Easy',
         maxNodes: '1k+',
+        supportedDemos: ['basic'],
         features: { 
           zoomPan: 'none', customNodes: 'none', edgeRouting: 'full', largeData: 'none', a11y: 'partial', interactivity: 'none',
-          stateSync: 'none', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'none', bundleSize: 'medium'
+          animation: 'none', export: 'full', stateSync: 'none', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'none', undoRedo: 'none'
         },
       },
       {
@@ -237,12 +271,13 @@ export const categories: Category[] = [
         engine: 'SVG/Canvas/HTML',
         reactFriendly: 'Low (Manual DOM)',
         complexity: 'High',
-        license: 'BSD-3-Clause',
+        license: 'BSD-3',
         learningCurve: 'Steep',
         maxNodes: '100k+',
+        supportedDemos: ['basic', 'custom', 'scale'],
         features: { 
           zoomPan: 'full', customNodes: 'full', edgeRouting: 'full', largeData: 'full', a11y: 'partial', interactivity: 'full',
-          stateSync: 'none', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'full', bundleSize: 'medium'
+          animation: 'full', export: 'full', stateSync: 'none', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'full', undoRedo: 'none'
         },
       },
     ],

@@ -1,32 +1,39 @@
 /**
- * This file is the single source of truth for the comparison matrix.
- * Adding a feature here automatically updates types across the entire app.
+ * Single source of truth for the comparison matrix.
  */
 
 export const FEATURE_DEFINITIONS = {
+  // UI/UX Capabilities
   zoomPan: { label: 'Zoom & Pan', type: 'feature' },
   customNodes: { label: 'Custom Nodes', type: 'feature' },
   edgeRouting: { label: 'Edge Routing', type: 'feature' },
   largeData: { label: 'Scale/Perf', type: 'feature' },
   a11y: { label: 'Accessibility', type: 'feature' },
   interactivity: { label: 'Interactivity', type: 'feature' },
+  animation: { label: 'Transitions', type: 'feature' },
+  export: { label: 'Export (SVG/PNG)', type: 'feature' },
+  
+  // Technical/Integration Capabilities
   stateSync: { label: 'React State Sync', type: 'feature' },
   layoutEngine: { label: 'Layout Engines', type: 'feature' },
   virtualization: { label: 'Virtualization', type: 'feature' },
   tsSupport: { label: 'TS Support', type: 'feature' },
   domAccess: { label: 'React-in-Node', type: 'feature' },
-  bundleSize: { label: 'Bundle Size', type: 'size' },
-  algorithms: { label: 'Graph Algorithms', type: 'feature' },
-  dynamicUpdates: { label: 'Dynamic Updates', type: 'feature' },
-  stylingMode: { label: 'Styling Paradigm', type: 'feature' },
-  exportSupport: { label: 'Export Options', type: 'feature' },
+  undoRedo: { label: 'Undo/Redo', type: 'feature' },
+} as const;
+
+export const DEMO_STANDARDS = {
+  basic: { label: 'Basic Rendering', description: 'Simple graph/tree visualization' },
+  scale: { label: 'Performance Test', description: 'Handling 10k+ nodes smoothly' },
+  custom: { label: 'Custom Styling', description: 'Custom nodes and edge appearance' },
+  interactive: { label: 'Advanced Interaction', description: 'Drag-and-drop, zoom, and selection' },
+  a11y: { label: 'Accessibility', description: 'Keyboard nav and screen reader support' },
 } as const;
 
 export type FeatureId = keyof typeof FEATURE_DEFINITIONS;
+export type DemoStandardId = keyof typeof DEMO_STANDARDS;
 export type FeatureValue = 'full' | 'partial' | 'none';
-export type SizeValue = 'small' | 'medium' | 'large';
 
-// Helper to determine if a feature uses FeatureValue or SizeValue
 export type FeatureValueMap = {
-  [K in FeatureId]: typeof FEATURE_DEFINITIONS[K]['type'] extends 'size' ? SizeValue : FeatureValue;
+  [K in FeatureId]: FeatureValue;
 };

@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { FeatureId, FeatureValueMap } from './schema';
+import { FeatureId, FeatureValueMap, DemoStandardId } from './schema';
 
 export interface LibraryFeatures {
   [K in FeatureId]: FeatureValueMap[K];
@@ -15,6 +15,7 @@ export interface Library {
   learningCurve: 'Easy' | 'Moderate' | 'Steep';
   maxNodes: string;
   features: LibraryFeatures;
+  supportedDemos: DemoStandardId[];
 }
 
 export interface Category {
