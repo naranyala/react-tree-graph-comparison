@@ -1,35 +1,42 @@
 import React from 'react';
-import { Tree } from 'react-arborist';
+import { SimpleTree as Arborist } from 'react-arborist';
+import { generateTreeData } from '../../utils/dataGenerator';
 
-const data = [
-  {
-    id: '1',
-    name: 'Root',
-    children: [
-      { id: '2', name: 'Child 1' },
-      {
-        id: '3',
-        name: 'Child 2',
-        children: [{ id: '4', name: 'Grandchild 1' }],
-      },
-    ],
-  },
-];
+interface ArboristDemoProps {
+  nodes?: number;
+  demoId?: string;
+}
 
-const ArboristDemo = () => {
+const ArboristDemo = ({ nodes, demoId }: ArboristDemoProps) => {
+  const data = nodes ? generateTreeData(nodes) : { name: 'Root', children: [] };
+
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px' }}>
-      <h3>React Arborist Demo</h3>
-      <div style={{ width: '400px', height: '200px' }}>
-        <Tree initialData={data} width={400} height={200} indent={20}>
-          {(node) => (
-            <div style={{ padding: '2px 5px', cursor: 'pointer' }}>
-              {node.isFocused ? '👉 ' : ''}
-              {node.data.name}
-            </div>
-          )}
-        </Tree>
-      </div>
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        maxHeight: '80vh',
+        backgroundColor: 'white',
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+        overflow: 'hidden',
+      }}
+    >
+      <Arborist
+        data={data}
+        onMove={({ id, parentId }) => console.log('Moved', id, parentId)}
+        style={{ height: '100%' }}
+      >
+        {({ nodes, isOpen, level }) => (
+          <div style={{ paddingLeft: `${level * 16}px` }}>
+            {nodes.map((node) => (
+              <div key={node.id} style={{ padding: '4px' }}>
+                {node.isLeaf ? '• ' : '▸ '} {node.data.name}
+              </div>
+            ))}
+          </div>
+        )}
+      </Arborist>
     </div>
   );
 };

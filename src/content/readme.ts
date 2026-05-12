@@ -1,4 +1,4 @@
-# Architecting Visual Connectivity: A Comparative Research on React Graph and Tree Visualization Libraries
+export const README_CONTENT = `# Architecting Visual Connectivity: A Comparative Research on React Graph and Tree Visualization Libraries
 
 ## Abstract
 In the modern era of data-driven applications, the ability to visualize complex relationships—ranging from hierarchical organizational charts and file systems to intricate social networks and neural mappings—has become a critical requirement for software engineering. However, the React ecosystem presents a fragmented landscape of visualization tools, each making distinct trade-offs between **rendering performance**, **developer experience (DX)**, and **functional capabilities**.
@@ -20,20 +20,23 @@ The "Visualization Dilemma" revolves around three competing pillars:
 ## 2. Methodology
 To ensure an objective comparison, each library was evaluated using a standardized **Feature Support Matrix** and an **Automated Benchmarking Suite**.
 
-### 2.1 The 16-Factor Weighted Matrix
-Instead of simple binary checks, we use a **Weighted Scoring System**. Each feature is evaluated against a strict **Standardized Rubric** (see `/src/schema/rubric.ts` in the source) to determine if support is `Full`, `Partial`, or `None`.
+### 2.1 The 16-Factor Matrix & Scoring System
+Libraries were scored based on a weighted feature set:
+- **Full Support**: 2 points
+- **Partial Support**: 1 point
+- **No Support**: 0 points
 
-#### Scoring Logic:
-- **Weighted Value**: Features are not equal. Core engineering factors (e.g., Virtualization, Scale) have a higher multiplier (up to 3x) than secondary features (e.g., Export Support).
-- **Rubric-Based Scoring**:
-    - **Full (3 pts)**: Meets all criteria of the rubric (e.g., 60FPS at 10k+ nodes).
-    - **Partial (1 pt)**: Meets basic needs but lacks advanced capabilities.
-    - **None (0 pts)**: Feature is entirely absent.
-- **Richness Score**: The final score is the sum of $(\text{Weight} \times \text{Rubric Score})$.
+These points are summed across 16 technical vectors, including:
+*   **Rendering Engine**: Canvas, SVG, WebGL, or HTML.
+*   **Interaction**: Zoom & Pan, Rich Interactivity.
+*   **Engineering**: TypeScript support, Bundle size, React state synchronization.
+*   **Advanced Capabilities**: Virtualization (for massive datasets), Edge routing algorithms, and Accessibility (A11y).
+*   **Domain Specifics**: Graph algorithms, Dynamic updates, and Export options.
+
+This results in a **Richness Score**, allowing us to rank libraries by their overall capability set.
 
 ### 2.2 Performance Benchmarking
 Rather than relying on marketing claims, we implemented a custom benchmarking tool using **Playwright**. The suite generates synthetic datasets of varying scales (100, 1,000, and 5,000 nodes) and measures the **Time to Interactive (TTI)** and frame stability during pan/zoom operations.
-
 
 ---
 
@@ -74,8 +77,8 @@ The choice of rendering engine is the single biggest predictor of a library's pe
 
 | Engine | Pros | Cons | Best For... |
 | :--- | :--- | :--- | :--- |
-| **SVG** | Perfect scaling, Easy CSS styling, DOM events | Performance drops after $\approx 1k$ nodes | Small, high-quality diagrams |
-| **Canvas** | Much faster than SVG, Good for $\approx 10k$ nodes | Harder to style individual elements, No native DOM events | General purpose interactive graphs |
+| **SVG** | Perfect scaling, Easy CSS styling, DOM events | Performance drops after $approx 1k$ nodes | Small, high-quality diagrams |
+| **Canvas** | Much faster than SVG, Good for $approx 10k$ nodes | Harder to style individual elements, No native DOM events | General purpose interactive graphs |
 | **WebGL** | Hardware accelerated, Handles $1M+$ nodes | Steep learning curve, Harder to implement custom UI | Massive datasets, 3D networks |
 | **HTML** | Full React component support, Perfect A11y | Slowest rendering, No "graph" layout logic | Tree explorers, Simple flowcharts |
 
@@ -84,19 +87,19 @@ The choice of rendering engine is the single biggest predictor of a library's pe
 ## 5. Decision Framework: Which Library to Choose?
 
 ### Scenario A: "I need to visualize a social network with 500,000 users."
-$\rightarrow$ **Recommendation**: `Sigma.js` or `React Force Graph`.
+$\rightarrow$ **Recommendation**: \`Sigma.js\` or \`React Force Graph\`.
 *Reason*: WebGL is mandatory for this scale.
 
 ### Scenario B: "I am building a visual automation tool where users drag-and-drop logic blocks."
-$\rightarrow$ **Recommendation**: `React Flow`.
+$\rightarrow$ **Recommendation**: \`React Flow\`.
 *Reason*: Declarative React nodes and excellent interaction handles.
 
 ### Scenario C: "I need a file explorer with nested folders and keyboard support."
-$\rightarrow$ **Recommendation**: `React Complex Tree` or `React Arborist`.
+$\rightarrow$ **Recommendation**: \`React Complex Tree\` or \`React Arborist\`.
 *Reason*: HTML-based rendering and accessibility compliance.
 
 ### Scenario D: "I need a scientific tool to find the shortest path in a protein network."
-$\rightarrow$ **Recommendation**: `Cytoscape.js`.
+$\rightarrow$ **Recommendation**: \`Cytoscape.js\`.
 *Reason*: Robust built-in graph theory algorithms.
 
 ---
@@ -106,7 +109,7 @@ $\rightarrow$ **Recommendation**: `Cytoscape.js`.
 After exhaustive benchmarking and feature mapping, we have reached a definitive conclusion on library selection based on project goals.
 
 ### 🏆 The Top Pick: React Flow
-For **90% of modern React applications**, `React Flow` is the optimal choice. It achieves the "Holy Grail" of visualization: combining high performance (via SVG/HTML hybrid) with a fully declarative React API. Its ability to treat nodes as first-class React components makes it unmatched for developer productivity and UI flexibility.
+For **90% of modern React applications**, \`React Flow\` is the optimal choice. It achieves the "Holy Grail" of visualization: combining high performance (via SVG/HTML hybrid) with a fully declarative React API. Its ability to treat nodes as first-class React components makes it unmatched for developer productivity and UI flexibility.
 
 ### 🥈 The Specialist Alternatives
 If your requirements fall outside the general-purpose use case, choose based on these strict criteria:
@@ -132,7 +135,7 @@ This project is not just a guide but a living benchmark tool. You can run the li
 - **Testing**: [Playwright](https://playwright.dev/)
 
 ### Quick Start
-```bash
+\`\`\`bash
 # Install dependencies
 bun install
 
@@ -141,9 +144,10 @@ bun run dev
 
 # Run the automated performance benchmarks
 bun run test:perf
-```
+\`\`\`
 
 ---
 
 ## 7. Conclusion
 The React graph ecosystem has evolved from simple SVG wrappers to sophisticated WebGL engines. The current trend is moving toward **Hybrid Rendering** (using Canvas for edges and HTML for nodes) to combine performance with the flexibility of the React component model. For most developers, the choice boils down to a trade-off between the **analysis power** of Cytoscape, the **visual scale** of Sigma, and the **developer ergonomics** of React Flow.
+`;

@@ -5,19 +5,20 @@ import { generateGraphData } from '../../utils/dataGenerator';
 
 interface SigmaDemoProps {
   nodes?: number;
+  demoId?: string;
 }
 
-const SigmaDemo = ({ nodes }: SigmaDemoProps) => {
+const SigmaDemo = ({ nodes, demoId }: SigmaDemoProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const graph = new Graph();
-    
+
     if (nodes) {
       const { nodes: gNodes, edges: gEdges } = generateGraphData(nodes);
-      gNodes.forEach(n => {
+      gNodes.forEach((n) => {
         graph.addNode(n.id, {
           label: n.label,
           x: Math.random() * 100,
@@ -26,7 +27,7 @@ const SigmaDemo = ({ nodes }: SigmaDemoProps) => {
           color: '#4f46e5',
         });
       });
-      gEdges.forEach(e => {
+      gEdges.forEach((e) => {
         graph.addEdge(e.source, e.target);
       });
     } else {
@@ -63,13 +64,14 @@ const SigmaDemo = ({ nodes }: SigmaDemoProps) => {
     return () => {
       sigma.kill();
     };
-  }, [nodes]);
+  }, [nodes, demoId]);
 
   return (
     <div
       style={{
         width: '100%',
-        height: '500px',
+        height: '100%',
+        maxHeight: '80vh',
         backgroundColor: 'white',
         border: '1px solid #ccc',
         borderRadius: '8px',

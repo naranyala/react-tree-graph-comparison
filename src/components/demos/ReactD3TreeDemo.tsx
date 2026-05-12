@@ -18,15 +18,35 @@ const defaultTreeData = {
 
 interface ReactD3TreeDemoProps {
   nodes?: number;
+  demoId?: string;
 }
 
-const ReactD3TreeDemo = ({ nodes }: ReactD3TreeDemoProps) => {
+const ReactD3TreeDemo = ({ nodes, demoId }: ReactD3TreeDemoProps) => {
   const data = nodes ? generateTreeData(nodes) : defaultTreeData;
+
+  // Feature Variants
+  const getTreeProps = () => {
+    switch (demoId) {
+      case 'scale':
+        return { nodeSize: { x: 50, y: 40 } }; // Smaller nodes to fit more
+      case 'custom':
+        return {
+          pathFunc: 'step',
+          renderCustomNode: () => <div style={{ color: 'red' }}>Custom</div>, // (conceptually)
+        };
+      default:
+        return { pathFunc: 'step', nodeSize: { x: 150, y: 100 } };
+    }
+  };
+
+  const treeProps = getTreeProps();
+
   return (
     <div
       style={{
         width: '100%',
-        height: '500px',
+        height: '100%',
+        maxHeight: '80vh',
         backgroundColor: 'white',
         border: '1px solid #ccc',
         borderRadius: '8px',
@@ -36,9 +56,9 @@ const ReactD3TreeDemo = ({ nodes }: ReactD3TreeDemoProps) => {
       <Tree
         data={data}
         orientation="vertical"
-        pathFunc="step"
-        translate={{ x: 200, y: 50 }}
-        nodeSize={{ x: 150, y: 100 }}
+        translate={{ x: 0, y: 0 }}
+        {...treeProps}
+        center={true}
       />
     </div>
   );

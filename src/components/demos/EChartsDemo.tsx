@@ -1,54 +1,59 @@
 import * as echarts from 'echarts';
 import ReactECharts from 'echarts-for-react';
-import React from 'react';
+import ReactECharts from 'echarts-for-react';
+import React, { useMemo } from 'react';
+import { generateGraphData } from '../../utils/dataGenerator';
 
-const EChartsDemo = () => {
-  const option = {
-    title: {
-      text: 'ECharts Graph Demo',
-      left: 'center',
-    },
-    tooltip: {},
-    legend: {
-      data: ['Group A', 'Group B'],
-      bottom: 10,
-    },
-    series: [
-      {
-        name: 'Graph',
-        type: 'graph',
-        layout: 'force',
-        data: [
-          { name: 'Node 1', category: 0, value: 10 },
-          { name: 'Node 2', category: 0, value: 20 },
-          { name: 'Node 3', category: 1, value: 30 },
-          { name: 'Node 4', category: 1, value: 40 },
-          { name: 'Node 5', category: 0, value: 50 },
-        ],
-        links: [
-          { source: 'Node 1', target: 'Node 2' },
-          { source: 'Node 1', target: 'Node 3' },
-          { source: 'Node 2', target: 'Node 4' },
-          { source: 'Node 3', target: 'Node 5' },
-          { source: 'Node 4', target: 'Node 5' },
-        ],
-        categories: [{ name: 'Group A' }, { name: 'Group B' }],
-        force: {
-          repulsion: 100,
-          edgeLength: 100,
+interface EChartsDemoProps {
+  nodes?: number;
+  demoId?: string;
+}
+
+const EChartsDemo = ({ nodes, demoId }: EChartsDemoProps) => {
+  const { nodes: gNodes, edges: gEdges } = useMemo(() => {
+    return nodes
+      ? generateGraphData(nodes)
+      : {
+          nodes: [{ id: '1' }, { id: '2' }, { id: '3' }],
+          edges: [
+            { source: '1', target: '2' },
+            { source: '2', target: '3' },
+          ],
+        };
+  }, [nodes]);
+
+  const option = useMemo(() => {
+    const chartData = {
+      nodes: gNodes.map((n) => ({ id: n.id, name: n.label })),
+      links: gEdges.map((e) => ({ source: e.source, target: e.target })),
+    };
+
+    // Handle variants
+    let color = '#4f46e5';
+    if (demoId === 'custom') color = '#f59e0b';
+
+    return {
+      series: [
+        {
+          type: 'graph',
+          layout: 'force',
+          data: chartData.nodes,
+          links: chartData.links,
+          roam: true,
+          label: { show: true },
+          itemStyle: { color: color },
+          lineStyle: { color: '#ccc', curveness: 0.3 },
         },
-        label: {
-          show: true,
-        },
-      },
-    ],
-  };
+      ],
+    };
+  }, [gNodes, gEdges, demoId]);
 
   return (
     <div
       style={{
         width: '100%',
-        height: '500px',
+        height: '100%',
+        maxHeight: '80vh',
         backgroundColor: 'white',
         border: '1px solid #ccc',
         borderRadius: '8px',

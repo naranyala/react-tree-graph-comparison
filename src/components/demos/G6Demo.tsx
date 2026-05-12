@@ -1,55 +1,72 @@
 import { Graph } from '@antv/g6';
 import React, { useEffect, useRef } from 'react';
+import { generateGraphData } from '../../utils/dataGenerator';
 
-const G6Demo = () => {
+interface G6DemoProps {
+  nodes?: number;
+  demoId?: string;
+}
+
+const G6Demo = ({ nodes, demoId }: G6DemoProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const { nodes: gNodes, edges: gEdges } = nodes
+      ? generateGraphData(nodes)
+      : {
+          nodes: [{ id: '1' }, { id: '2' }, { id: '3' }],
+          edges: [
+            { source: '1', target: '2' },
+            { source: '2', target: '3' },
+          ],
+        };
+
+    const data = {
+      nodes: gNodes.map((n) => ({ id: n.id, label: n.label })),
+      edges: gEdges.map((e) => ({ source: e.source, target: e.target })),
+    };
+
     const graph = new Graph({
       container: containerRef.current,
-      width: 400,
-      height: 200,
-      layout: {
-        type: 'force',
+      width: containerRef.current.offsetWidth,
+      height: containerRef.current.offsetHeight,
+      modes: {
+        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
       },
-      node: {
+      defaultNode: {
+        size: 30,
         style: {
-          fill: '#C6E5FF',
-          stroke: '#5B8FF9',
+          fill: demoId === 'custom' ? '#f59e0b' : '#4f46e5',
         },
       },
-      edge: {
+      defaultEdge: {
         style: {
-          stroke: '#A3B1BF',
+          stroke: '#ccc',
         },
       },
     });
 
-    const data = {
-      nodes: [{ id: 'node1' }, { id: 'node2' }, { id: 'node3' }],
-      edges: [
-        { source: 'node1', target: 'node2' },
-        { source: 'node2', target: 'node3' },
-      ],
-    };
-
-    graph.setData(data);
+    graph.data(data);
     graph.render();
 
-    return () => {
-      graph.destroy();
-    };
-  }, []);
+    return () => graph.destroy();
+  }, [nodes, demoId]);
 
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px' }}>
-      <h3>AntV G6 Demo</h3>
-      <div
-        ref={containerRef}
-        style={{ width: '400px', height: '200px', background: '#f9f9f9' }}
-      />
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        maxHeight: '80vh',
+        backgroundColor: 'white',
+        border: '1px solid #ccc',
+        borderRadius: '8px',
+        overflow: 'hidden',
+      }}
+    >
+      <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
     </div>
   );
 };

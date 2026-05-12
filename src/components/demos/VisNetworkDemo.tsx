@@ -1,69 +1,60 @@
 import React, { useEffect, useRef } from 'react';
-import { DataSet } from 'vis-data';
 import { Network } from 'vis-network';
+import { generateGraphData } from '../../utils/dataGenerator';
 
-const VisNetworkDemo = () => {
-  const visJsContainerRef = useRef<HTMLDivElement>(null);
+interface VisNetworkDemoProps {
+  nodes?: number;
+  demoId?: string;
+}
+
+const VisNetworkDemo = ({ nodes, demoId }: VisNetworkDemoProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!visJsContainerRef.current) return;
+    if (!containerRef.current) return;
 
-    const nodes = new DataSet([
-      { id: 1, label: 'Node 1' },
-      { id: 2, label: 'Node 2' },
-      { id: 3, label: 'Node 3' },
-      { id: 4, label: 'Node 4' },
-      { id: 5, label: 'Node 5' },
-    ]);
+    const { nodes: gNodes, edges: gEdges } = nodes
+      ? generateGraphData(nodes)
+      : {
+          nodes: [{ id: '1' }, { id: '2' }, { id: '3' }],
+          edges: [
+            { source: '1', target: '2' },
+            { source: '2', target: '3' },
+          ],
+        };
 
-    const edges = new DataSet([
-      { from: 1, to: 2 },
-      { from: 1, to: 3 },
-      { from: 2, to: 4 },
-      { from: 2, to: 5 },
-      { from: 3, to: 5 },
-    ]);
-
-    const data = { nodes, edges };
-    const options = {
-      nodes: {
-        shape: 'dot',
-        size: 16,
-        color: {
-          background: '#4f46e5',
-          border: '#4338ca',
-        },
-        font: {
-          color: '#111827',
-        },
-      },
-      edges: {
-        color: '#cbd5e1',
-        width: 2,
-      },
-      physics: {
-        enabled: true,
-      },
+    const data = {
+      nodes: gNodes.map((n) => ({ id: n.id, label: n.label })),
+      edges: gEdges.map((e) => ({ from: e.source, to: e.target })),
     };
 
-    const network = new Network(visJsContainerRef.current, data, options);
-
-    return () => {
-      network.destroy();
+    const options: any = {
+      physics: { enabled: true },
+      interaction: { hover: true },
     };
-  }, []);
+
+    if (demoId === 'custom') {
+      options.nodes = { color: { background: '#f59e0b', border: '#d97706' } };
+    }
+
+    const network = new Network(containerRef.current, data, options);
+
+    return () => network.destroy();
+  }, [nodes, demoId]);
 
   return (
     <div
       style={{
         width: '100%',
-        height: '500px',
+        height: '100%',
+        maxHeight: '80vh',
+        backgroundColor: 'white',
         border: '1px solid #ccc',
         borderRadius: '8px',
         overflow: 'hidden',
       }}
     >
-      <div ref={visJsContainerRef} style={{ width: '100%', height: '100%' }} />
+      <div ref={containerRef} style={{ width: '100%', height: '100%' }} />
     </div>
   );
 };

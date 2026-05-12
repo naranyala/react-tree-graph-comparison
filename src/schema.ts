@@ -12,7 +12,7 @@ export const FEATURE_DEFINITIONS = {
   interactivity: { label: 'Interactivity', type: 'feature' },
   animation: { label: 'Transitions', type: 'feature' },
   export: { label: 'Export (SVG/PNG)', type: 'feature' },
-  
+
   // Technical/Integration Capabilities
   stateSync: { label: 'React State Sync', type: 'feature' },
   layoutEngine: { label: 'Layout Engines', type: 'feature' },
@@ -23,11 +23,26 @@ export const FEATURE_DEFINITIONS = {
 } as const;
 
 export const DEMO_STANDARDS = {
-  basic: { label: 'Basic Rendering', description: 'Simple graph/tree visualization' },
-  scale: { label: 'Performance Test', description: 'Handling 10k+ nodes smoothly' },
-  custom: { label: 'Custom Styling', description: 'Custom nodes and edge appearance' },
-  interactive: { label: 'Advanced Interaction', description: 'Drag-and-drop, zoom, and selection' },
-  a11y: { label: 'Accessibility', description: 'Keyboard nav and screen reader support' },
+  basic: {
+    label: 'Basic Rendering',
+    description: 'Simple graph/tree visualization',
+  },
+  scale: {
+    label: 'Performance Test',
+    description: 'Handling 10k+ nodes smoothly',
+  },
+  custom: {
+    label: 'Custom Styling',
+    description: 'Custom nodes and edge appearance',
+  },
+  interactive: {
+    label: 'Advanced Interaction',
+    description: 'Drag-and-drop, zoom, and selection',
+  },
+  a11y: {
+    label: 'Accessibility',
+    description: 'Keyboard nav and screen reader support',
+  },
 } as const;
 
 export type FeatureId = keyof typeof FEATURE_DEFINITIONS;
