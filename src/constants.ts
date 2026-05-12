@@ -13,6 +13,10 @@ export const TOPICS = [
   { id: 'tsSupport', label: 'TS Support' },
   { id: 'domAccess', label: 'React-in-Node' },
   { id: 'bundleSize', label: 'Bundle Size' },
+  { id: 'algorithms', label: 'Graph Algorithms' },
+  { id: 'dynamicUpdates', label: 'Dynamic Updates' },
+  { id: 'stylingMode', label: 'Styling Paradigm' },
+  { id: 'exportSupport', label: 'Export Options' },
 ];
 
 export const categories: Category[] = [
@@ -31,7 +35,8 @@ export const categories: Category[] = [
         maxNodes: '10k+',
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'full', largeData: 'partial', a11y: 'none', interactivity: 'full',
-          stateSync: 'partial', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'none', bundleSize: 'medium'
+          stateSync: 'partial', layoutEngine: 'full', virtualization: 'none', tsSupport: 'full', domAccess: 'none', bundleSize: 'medium',
+          algorithms: 'full', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'full'
         },
       },
       {
@@ -45,7 +50,8 @@ export const categories: Category[] = [
         maxNodes: '50k+',
         features: { 
           zoomPan: 'full', customNodes: 'full', edgeRouting: 'full', largeData: 'full', a11y: 'none', interactivity: 'full',
-          stateSync: 'partial', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'partial', bundleSize: 'large'
+          stateSync: 'partial', layoutEngine: 'full', virtualization: 'partial', tsSupport: 'full', domAccess: 'partial', bundleSize: 'large',
+          algorithms: 'full', dynamicUpdates: 'full', stylingMode: 'full', exportSupport: 'full'
         },
       },
       {
@@ -59,7 +65,8 @@ export const categories: Category[] = [
         maxNodes: '5k+',
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'partial', largeData: 'partial', a11y: 'none', interactivity: 'full',
-          stateSync: 'partial', layoutEngine: 'partial', virtualization: 'none', tsSupport: 'partial', domAccess: 'none', bundleSize: 'medium'
+          stateSync: 'partial', layoutEngine: 'partial', virtualization: 'none', tsSupport: 'partial', domAccess: 'none', bundleSize: 'medium',
+          algorithms: 'partial', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'partial'
         },
       },
       {
@@ -73,7 +80,8 @@ export const categories: Category[] = [
         maxNodes: '100k+',
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'none', largeData: 'full', a11y: 'none', interactivity: 'full',
-          stateSync: 'full', layoutEngine: 'partial', virtualization: 'full', tsSupport: 'full', domAccess: 'partial', bundleSize: 'medium'
+          stateSync: 'full', layoutEngine: 'partial', virtualization: 'full', tsSupport: 'full', domAccess: 'partial', bundleSize: 'medium',
+          algorithms: 'none', dynamicUpdates: 'full', stylingMode: 'partial', exportSupport: 'partial'
         },
       },
       {
@@ -87,7 +95,8 @@ export const categories: Category[] = [
         maxNodes: '100k+',
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'partial', largeData: 'full', a11y: 'partial', interactivity: 'partial',
-          stateSync: 'partial', layoutEngine: 'partial', virtualization: 'partial', tsSupport: 'full', domAccess: 'none', bundleSize: 'large'
+          stateSync: 'partial', layoutEngine: 'partial', virtualization: 'partial', tsSupport: 'full', domAccess: 'none', bundleSize: 'large',
+          algorithms: 'partial', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'full'
         },
       },
       {
@@ -101,7 +110,8 @@ export const categories: Category[] = [
         maxNodes: '1M+',
         features: { 
           zoomPan: 'full', customNodes: 'partial', edgeRouting: 'none', largeData: 'full', a11y: 'none', interactivity: 'partial',
-          stateSync: 'partial', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'none', bundleSize: 'medium'
+          stateSync: 'partial', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'none', bundleSize: 'medium',
+          algorithms: 'none', dynamicUpdates: 'partial', stylingMode: 'partial', exportSupport: 'partial'
         },
       },
     ],
@@ -121,7 +131,8 @@ export const categories: Category[] = [
         maxNodes: '10k+',
         features: { 
           zoomPan: 'none', customNodes: 'full', edgeRouting: 'none', largeData: 'full', a11y: 'partial', interactivity: 'full',
-          stateSync: 'full', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'full', bundleSize: 'small'
+          stateSync: 'full', layoutEngine: 'none', virtualization: 'full', tsSupport: 'full', domAccess: 'full', bundleSize: 'small',
+          algorithms: 'none', dynamicUpdates: 'full', stylingMode: 'full', exportSupport: 'partial'
         },
       },
       {

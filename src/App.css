@@ -1,3 +1,23 @@
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --bg-color: #f9fafb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --border-color: #e5e7eb;
+  --white: #ffffff;
+  --error-color: #ef4444;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 .app-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -45,70 +65,113 @@
   opacity: 0.9;
 }
 
-/* Table Styles */
-.comparison-table-container {
+/* Markdown Styles */
+.markdown-content {
   background: var(--white);
-  border-radius: 12px;
-  box-shadow:
-    0 1px 3px 0 rgba(0, 0, 0, 0.1),
-    0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  overflow: hidden;
+  padding: 40px;
+  border-radius: 16px;
   border: 1px solid var(--border-color);
-  margin-bottom: 24px;
-}
-
-.table-scroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.comparison-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  min-width: 700px;
-}
-
-.comparison-table th {
-  background-color: #f8fafc;
-  padding: 16px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.comparison-table td {
-  padding: 16px;
-  font-size: 0.95rem;
-  border-bottom: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 64px;
+  line-height: 1.6;
   color: var(--text-main);
 }
 
-.comparison-table tr:last-child td {
-  border-bottom: none;
+.markdown-content h1 { font-size: 2.5rem; margin-bottom: 1rem; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; }
+.markdown-content h2 { font-size: 1.75rem; margin-top: 2rem; margin-bottom: 1rem; color: var(--primary-color); }
+.markdown-content h3 { font-size: 1.25rem; margin-top: 1.5rem; }
+.markdown-content p { margin-bottom: 1rem; }
+.markdown-content ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+.markdown-content li { margin-bottom: 0.5rem; }
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.9rem;
 }
 
-.comparison-table tr:hover {
-  background-color: #f1f5f9;
+.markdown-content th {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  text-align: left;
+  font-weight: 600;
 }
 
-.btn-view {
-  padding: 6px 12px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.875rem;
-  font-weight: 500;
+.markdown-content td {
+  border: 1px solid var(--border-color);
+  padding: 12px;
+}
+
+/* Demo Gallery */
+.demos-gallery {
+  margin-top: 64px;
+  padding-bottom: 100px;
+}
+
+.demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.btn-demo-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  text-align: left;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.btn-view:hover {
-  background-color: var(--primary-hover);
+.btn-demo-card:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  background: #eef2ff;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.card-usecase {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.card-arrow {
+  color: var(--border-color);
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.btn-demo-card:hover .card-arrow {
+  color: var(--primary-color);
 }
 
 /* Drawer Layout */

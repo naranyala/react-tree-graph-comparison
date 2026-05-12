@@ -20,7 +20,7 @@ const NODE_COUNTS = [100, 1000, 5000];
 for (const lib of LIBRARIES) {
   for (const nodes of NODE_COUNTS) {
     test(`Performance: ${lib} with ${nodes} nodes`, async ({ page }) => {
-      const url = `http://localhost:5173/?benchmark=true&library=${encodeURIComponent(lib)}&nodes=${nodes}`;
+      const url = `http://localhost:8080/?benchmark=true&library=${encodeURIComponent(lib)}&nodes=${nodes}`;
       
       const start = Date.now();
       await page.goto(url);

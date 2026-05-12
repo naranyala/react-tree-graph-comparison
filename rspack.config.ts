@@ -15,6 +15,10 @@ export default defineConfig({
   module: {
     rules: [
       {
+        test: /\.md$/,
+        type: 'asset/source',
+      },
+      {
         test: /\.svg$/,
         type: 'asset',
       },

@@ -1,8 +1,8 @@
 import { test, expect } from "bun:test";
-import { generateTreeData, generateGraphData } from "../src/utils/dataGenerator";
+import { generateTreeData, generateGraphData, type TreeNode } from "../src/utils/dataGenerator";
 
-const countNodes = (node: any): number => {
-  return 1 + (node.children?.reduce((acc: number, child: any) => acc + countNodes(child), 0) || 0);
+const countNodes = (node: TreeNode): number => {
+  return 1 + (node.children?.reduce((acc: number, child: TreeNode) => acc + countNodes(child), 0) || 0);
 };
 
 test("generateTreeData creates the correct number of nodes", () => {
@@ -13,21 +13,30 @@ test("generateTreeData creates the correct number of nodes", () => {
 });
 
 test("generateTreeData handles edge cases", () => {
-  // 1 node
   expect(countNodes(generateTreeData(1))).toBe(1);
-  
-  // 0 nodes - should still return a root node by current implementation
   expect(countNodes(generateTreeData(0))).toBe(1);
-  
-  // Negative nodes
   expect(countNodes(generateTreeData(-10))).toBe(1);
+});
+
+test("generateTreeData creates a valid hierarchy (no cycles)", () => {
+  const numNodes = 50;
+  const data = generateTreeData(numNodes);
+  const visited = new Set();
+  
+  const checkCycles = (node: TreeNode) => {
+    if (visited.has(node)) throw new Error("Cycle detected");
+    visited.add(node);
+    node.children?.forEach(checkCycles);
+  };
+  
+  expect(() => checkCycles(data)).not.toThrow();
 });
 
 test("generateGraphData creates the correct number of nodes and edges", () => {
   const numNodes = 50;
   const { nodes, edges } = generateGraphData(numNodes);
   expect(nodes.length).toBe(numNodes);
-  expect(edges.length).toBe(numNodes - 1);
+  expect(edges.length).toBe(numNodes > 0 ? numNodes - 1 : 0);
   
   edges.forEach(edge => {
     expect(nodes.find(n => n.id === edge.source)).toBeDefined();
@@ -36,16 +45,31 @@ test("generateGraphData creates the correct number of nodes and edges", () => {
 });
 
 test("generateGraphData handles edge cases", () => {
-  // 1 node
-  const single = generateGraphData(1);
-  expect(single.nodes.length).toBe(1);
-  expect(single.edges.length).toBe(0);
+  expect(generateGraphData(1).nodes.length).toBe(1);
+  expect(generateGraphData(1).edges.length).toBe(0);
+  expect(generateGraphData(0).nodes.length).toBe(0);
+  expect(generateGraphData(0).edges.length).toBe(0);
+});
+
+test("generateGraphData produces a connected structure", () => {
+  const numNodes = 20;
+  const { nodes, edges } = generateGraphData(numNodes);
   
-  // 0 nodes
-  const zero = generateGraphData(0);
-  expect(zero.nodes.length).toBe(0);
-  expect(zero.edges.length).toBe(-1); // Current implementation does loop from 1 to 0, but length is initialized as 0. 
-  // Wait, if numNodes = 0, loop for i=1; i<0 is false. edges is []. length is 0. 
-  // Actually let's check: for (let i = 1; i < 0; i++) is false. edges = []. length = 0.
-  // My manual trace says 0. Let's see.
+  // Since it's generated as a tree-like graph (each node i connects to some j < i), 
+  // it should be connected.
+  const reachable = new Set([nodes[0].id]);
+  let changed = true;
+  while (changed) {
+    changed = false;
+    edges.forEach(edge => {
+      if (reachable.has(edge.source) && !reachable.has(edge.target)) {
+        reachable.add(edge.target);
+        changed = true;
+      } else if (reachable.has(edge.target) && !reachable.has(edge.source)) {
+        reachable.add(edge.source);
+        changed = true;
+      }
+    });
+  }
+  expect(reachable.size).toBe(numNodes);
 });

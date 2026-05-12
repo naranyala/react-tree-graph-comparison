@@ -16,6 +16,10 @@ export const FEATURE_DEFINITIONS = {
   tsSupport: { label: 'TS Support', type: 'feature' },
   domAccess: { label: 'React-in-Node', type: 'feature' },
   bundleSize: { label: 'Bundle Size', type: 'size' },
+  algorithms: { label: 'Graph Algorithms', type: 'feature' },
+  dynamicUpdates: { label: 'Dynamic Updates', type: 'feature' },
+  stylingMode: { label: 'Styling Paradigm', type: 'feature' },
+  exportSupport: { label: 'Export Options', type: 'feature' },
 } as const;
 
 export type FeatureId = keyof typeof FEATURE_DEFINITIONS;
