@@ -1,0 +1,49 @@
+{
+  "name": "react-tree-graph-comparison",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rspack build",
+    "check": "biome check --write",
+    "dev": "rspack dev",
+    "format": "biome format --write",
+    "preview": "rspack preview",
+    "test": "bun test",
+    "test:e2e": "playwright test",
+    "test:perf": "playwright test tests/performance"
+  },
+  "dependencies": {
+    "@antv/g6": "^5.1.1",
+    "@xyflow/react": "^12.10.2",
+    "cytoscape": "^3.33.3",
+    "d3": "^7.9.0",
+    "echarts": "^6.0.0",
+    "echarts-for-react": "^3.0.6",
+    "graphology": "^0.26.0",
+    "mermaid": "^11.15.0",
+    "react": "^19.2.5",
+    "react-arborist": "^3.6.1",
+    "react-complex-tree": "^2.6.1",
+    "react-d3-tree": "^3.6.6",
+    "react-dom": "^19.2.5",
+    "react-force-graph-2d": "latest",
+    "sigma": "^3.0.3",
+    "vis-network": "^10.0.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.13",
+    "@playwright/test": "^1.60.0",
+    "@rspack/cli": "^2.0.2",
+    "@rspack/core": "^2.0.2",
+    "@rspack/dev-server": "^2.0.1",
+    "@rspack/plugin-react-refresh": "^2.0.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "happy-dom": "^20.9.0",
+    "react-refresh": "^0.18.0",
+    "typescript": "^6.0.3"
+  }
+}
